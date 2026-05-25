@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actual Budget - Bulk Categorizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏦 Actual Budget Bulk Categorizer</h1>
+      <p>Efficiently categorize transactions by payee</p>
+    </header>
+
+    <main>
+      <!-- Loading State -->
+      <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading data from Actual Budget...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error" class="error" style="display: none;"></div>
+
+      <!-- Main UI -->
+      <div id="main-ui" class="main-ui">
+        <!-- Step 1: Search Payees -->
+        <section class="section">
+          <h2>Step 1: Select a Payee Group</h2>
+
+          <div class="date-filter" id="dateFilter">
+            <div class="date-input-group">
+              <label for="startDate">From</label>
+              <input type="date" id="startDate">
+            </div>
+            <div class="date-input-group">
+              <label for="endDate">To</label>
+              <input type="date" id="endDate">
+            </div>
+          </div>
+          
+          <div class="search-box">
+            <input 
+              type="text" 
+              id="payeeSearch" 
+              placeholder="Search payees..." 
+              autocomplete="off"
+            >
+          </div>
+
+          <div id="payeeList" class="payee-list">
+            <!-- Populated by JavaScript -->
+          </div>
+        </section>
+
+        <!-- Step 2: Select Category -->
+        <section class="section" id="categorySection" style="display: none;">
+          <h2>Step 2: Select New Category</h2>
+          
+          <div class="selected-payee">
+            <strong>Selected Payee:</strong> <span id="selectedPayeeName"></span>
+            <small id="transactionCount"></small>
+          </div>
+
+          <div id="categoryList" class="category-list">
+            <!-- Populated by JavaScript -->
+          </div>
+
+          <div class="button-group">
+            <button id="backBtn" class="btn btn-secondary">← Back</button>
+            <button id="confirmBtn" class="btn btn-primary" disabled>
+              Update Transactions
+            </button>
+          </div>
+        </section>
+
+        <!-- Step 3: Success Message -->
+        <section class="section" id="successSection" style="display: none;">
+          <div class="success-message">
+            <h2>✓ Success!</h2>
+            <p id="successMessage"></p>
+            <button id="nextBtn" class="btn btn-primary">Done</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <small>Actual Budget Categorizer • Data loaded from Actual Budget API</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
